@@ -41,9 +41,9 @@ public class ExampleController2 extends HttpServlet{
 		System.out.println(userName);
 		System.out.println(intro);
 		
-		// 응답화면 만들기 => Java(Servlet)에서 응답화면 만들기 번거롭고 힘듦
-		// thus JSP가 대신 화면을 만들어달라고 Servlet으로부터 요청&응답을 위임받음
-		// JSP가 대신 응답화면을 만들기 위해 Servlet이 어떤 요청을 받았는지 알아야 함(req, resp)
+		/* 응답화면 만들기 => Java(Servlet)에서 응답화면 만들기 번거롭고 힘듦
+		  thus JSP가 대신 화면을 만들어달라고 Servlet으로부터 요청&응답을 위임받음
+		  JSP가 대신 응답화면을 만들기 위해 Servlet이 어떤 요청을 받았는지 알아야 함(req, resp) */
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/result.jsp");
 															// webapp 폴더 기준으로 작성
