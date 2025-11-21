@@ -11,7 +11,7 @@ public class JDBCTemplate {
 	
 	// 필드
 	private static Connection conn = null;
-	// -> static 메서드에서 사용할 static 필드 선언
+	// => static 메서드에서 사용할 static 필드 선언
 	
 	
 	// 메서드
@@ -23,8 +23,7 @@ public class JDBCTemplate {
 		
 		try {
 			
-			// 이전에 참조하던 Connection 객체가 존재하고
-			// 아직 close() 된 상태가 아니라면
+			// 이전에 참조하던 Connection 객체가 존재하고 아직 close()된 상태가 아니라면
 			// 새로 만들지 않고 기존 Connection 반환
 			if( conn != null && !conn.isClosed() ) {
 				return conn;

@@ -1,5 +1,10 @@
 package edu.kh.todoList.model.service;
 
+import static edu.kh.todoList.common.JDBCTemplate.close;
+import static edu.kh.todoList.common.JDBCTemplate.commit;
+import static edu.kh.todoList.common.JDBCTemplate.getConnection;
+import static edu.kh.todoList.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
@@ -8,8 +13,6 @@ import java.util.Map;
 import edu.kh.todoList.model.dao.TodoListDAO;
 import edu.kh.todoList.model.dao.TodoListDAOImpl;
 import edu.kh.todoList.model.dto.Todo;
-
-import static edu.kh.todoList.common.JDBCTemplate.*;
 
 public class TodoListServiceImpl implements TodoListService{
 
@@ -66,5 +69,65 @@ public class TodoListServiceImpl implements TodoListService{
 		return result;
 	}
 
+	@Override
+	public Todo todoDetail(int todoNo) throws Exception {
 
+		Connection conn = getConnection();
+		
+		Todo todo = dao.todoDetail(conn, todoNo);
+		
+		close(conn);
+		
+		return todo;
+	}
+
+	@Override
+	public int todoComplete(int todoNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.todoComplete(conn, todoNo);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	@Override
+	public int todoDelete(int todoNo) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.todoDelete(conn, todoNo);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+	@Override
+	public int todoUpdate(int todoNo, String title, String detail) throws Exception {
+		
+		Connection conn = getConnection();
+		
+		int result = dao.todoUpdate(conn, todoNo, title, detail);
+		
+		if(result > 0) commit(conn);
+		else rollback(conn);
+		
+		close(conn);
+		
+		return result;
+	}
+
+
+	
+	
+	
 }

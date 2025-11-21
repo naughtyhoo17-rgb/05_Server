@@ -13,17 +13,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-// "/main" 요청을 매핑하여 처리하는 Servlet
+// "/main" 요청을 mapping하여 처리하는 Servlet
 @WebServlet("/main")
 public class MainServlet extends HttpServlet{
 
-	// why? index.jsp에서 메인페이지 코드를 작성하지 않고 /main 요청을 처리하는 서블릿을 만들었는가?
-	// => Servlet(Java 코드 <-> DB)에서 추가한 (DB에서 조회한) 데이터를 얻어와 메인페이지에서부터 사용할 수 있게 하기 위해서
+	/* why? index.jsp에서 메인페이지 코드를 작성하지 않고 /main 요청을 처리하는 Servlet을 만들었는가?
+	 => Servlet(Java 코드 <-> DB)에서 추가한 (DB에서 조회한) 데이터를 얻어와 메인페이지에서부터 사용할 수 있게 하기 위해서 */
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+					throws ServletException, IOException {
 		
 		// DB에서 데이터를 얻어와야함!
-		// 요청 -> Controller -> Service -> DAO -> DB -> DAO -> Service -> Controller -> views(jsp) -> 응답
+		// 요청 -> Controller -> Service -> DAO -> DB -> DAO -> Service -> s views(jsp) -> 응답
 		// 서비스 호출
 		
 		try {
